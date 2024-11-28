@@ -24,7 +24,7 @@ declare module "next-auth" {
         username: string;
         email: string;
         isVerified: boolean;
-            isAcceptingMessage?: boolean;
+        isAcceptingMessage?: boolean;
     }
 
     declare module "next-auth/jwt" {

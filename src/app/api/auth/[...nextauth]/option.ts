@@ -57,11 +57,19 @@ export const authOptions: NextAuthOptions ={
           }
 
           return {
-            id: user._id?,
+            id: user.id.toString(),
+            _id: user._id?.toString(),
+            email: user.email,
+            username: user.username,
+            isVerified: user.isVerifyed,
+            isAcceptingMessage: user.isAcceptingMessage,
+            
+            
+            // id: user.id.toString(),
 
             // id:user._id?.toString(),
-            name:user.username,
-            email: user.email,
+            // name:user.username,
+            // email: user.email,
             // _id: user._id?.toString(),
             // isVerified: user.isVerifyed,
             // isAcceptingMessage: user.isAcceptingMessage,
