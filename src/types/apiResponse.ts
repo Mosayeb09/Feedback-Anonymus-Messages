@@ -3,6 +3,6 @@ export interface ApiResponse {
     success: boolean;
     
     message: string;
-    isAcceptigMessage?: boolean
+    isAcceptingMessage?: boolean
     messages?:Array<Message>
 }

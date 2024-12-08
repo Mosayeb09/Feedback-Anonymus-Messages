@@ -1,7 +1,7 @@
 // import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
-import { dbConnect } from "@/lib/dbConnect";
+import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/model/user";
 import {NextAuthOptions, User}  from "next-auth";
 // import type AuthOptions  from "next-auth";
@@ -43,7 +43,7 @@ export const authOptions: NextAuthOptions ={
             throw new Error("User not found with this email or username.");
           }
 
-          if (!user.isVerifyed) {
+          if (!user.isVerified) {
             throw new Error("Please verify your email before logging in.");
           }
 
@@ -58,10 +58,10 @@ export const authOptions: NextAuthOptions ={
 
           return {
             id: user.id.toString(),
-            _id: user._id?.toString(),
+            // _id: user._id?.toString(),
             email: user.email,
             username: user.username,
-            isVerified: user.isVerifyed,
+            isVerified: user.isVerified,
             isAcceptingMessage: user.isAcceptingMessage,
             
             
