@@ -9,6 +9,18 @@ const UsernameQuerySchema = z.object({
 });
 
 export async function GET(request: Request) {
+    
+    // only use GET request only older version 
+    // if (request.method !== 'GET') {
+    //     return Response.json(
+    //         {
+    //             success: false,
+    //             message: "Invalid request method"
+    //         },
+    //         { status: 405 }
+    //     )
+    // }
+    
     await dbConnect();
 
     try {
