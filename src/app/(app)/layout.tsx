@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
+// import "./globals.css";
 // import localFont from "next/font/local";
 
-import AuthProvider from "@/context/authProvider";
-import { Toaster } from "@/components/ui/toaster"
+
 import Navbar from "@/components/Navbar";
 
 
@@ -30,16 +29,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <AuthProvider>
+      
 
       
       <body >
         <Navbar />
       
         {children}
-        <Toaster />
+        
       </body>
-      </AuthProvider>
+     
     </html>
   );
 }
