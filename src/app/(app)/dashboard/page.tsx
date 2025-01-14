@@ -51,7 +51,7 @@ const Page = () => {
     }
   }, [setValue, toast]);
 
-  const fetchMessages = useCallback(async (refresh = false) => {
+  const fetchMessages = useCallback(async (refresh: boolean = false) => {
     setIsLoading(true);
     try {
       const response = await axios.get<ApiResponse>("/api/get-messages");
@@ -168,7 +168,7 @@ const Page = () => {
             <MessageCard
             key={message._id}
             message={message}
-            onMessageDelete={handleDeleteMessage}
+            onMessageDeleteAction={handleDeleteMessage}
           />
           ))
         ) : (
