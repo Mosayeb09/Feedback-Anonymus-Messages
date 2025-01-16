@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     await dbConnect();
     const {username, content}=await request.json();
     try {
-        const user = await UserModel.findOne({username});
+        const user = await UserModel.findOne({username}).exec();
         if(!user){
             return Response.json(
                 {
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
              success: true,
              message:"Message sent successfully"
             },
-            {status:200}
+            {status:201}
         )
     } catch (error) {
         console.log('An unexpected error occurred',error);

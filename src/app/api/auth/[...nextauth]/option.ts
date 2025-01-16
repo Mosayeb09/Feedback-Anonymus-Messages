@@ -102,13 +102,14 @@ export const authOptions: NextAuthOptions ={
       return session;
     },
   },
-  pages: {
-    signIn: "/sign-in", // Custom sign-in page
-  },
+ 
   session: {
     strategy: "jwt", // Use JWT-based sessions
   },
   secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: "/sign-in", // Custom sign-in page
+  }
    
 };
 

@@ -10,8 +10,8 @@ export async function GET() {
 
     await dbConnect();
     const session = await getServerSession(authOptions);
-    const user:User = session?.user ;
-    if (!session || !session.user) {
+    const _user:User = session?.user ;
+    if (!session || !_user) {
         return Response.json(
             {
                 success: false,
@@ -20,16 +20,16 @@ export async function GET() {
             { status: 401 }
         )
     }
-    const userId = new mongoose.Types.ObjectId(user._id);
+    const userId = new mongoose.Types.ObjectId(_user._id);
     try {
         //aggregate to get all messages from user
         const user = await UserModel.aggregate([
             {$match:{_id:userId}},
             {$unwind:"$messages"},
             {$sort:{'messages.createdAt':-1}},
-            {$group:{_id:'$_id',messages:{$push:'$messages'}}}
+            {$group:{_id:'$_id',messages:{$push:'$messages'}}},
 
-        ])
+        ]).exec();
         if(!user || user.length === 0) {
             return Response.json(
                 {
@@ -38,7 +38,7 @@ export async function GET() {
                 },
                 { status: 404 }
             )
-        }else{
+        }
             return Response.json(
                 {
                     success: true,
@@ -48,7 +48,7 @@ export async function GET() {
                 { status: 200 }
             )
 
-        }
+        
     } catch (error) {
         console.error("Error fetching messages:", error);
         return Response.json(

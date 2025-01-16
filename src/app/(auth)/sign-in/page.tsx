@@ -3,12 +3,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 import Link from "next/link";
-// import { useState, useEffect } from "react";
-// import { useDebounceCallback } from "usehooks-ts";
+
 import { useToast } from "@/hooks/use-toast";
-// import { signupSchema } from "@/schemas/signUpSchema";
-// import axios, { AxiosError } from "axios";
-// import { ApiResponse } from "@/types/apiResponse";
+
 import {
   Form,
   FormControl,
@@ -20,10 +17,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-// import { Loader2 } from "lucide-react";
+
 import { signInSchema } from "@/schemas/signInSchema";
 import { signIn } from "next-auth/react";
-// import { to } from './../../../../.next/static/chunks/[turbopack]_browser_dev_hmr-client_d6d8d4._';
+
 
 const Page = () => {
   
@@ -97,11 +94,7 @@ const Page = () => {
                       
                     />
                   </FormControl>
-                  {/* <p className="text-sm text-gray-500">
-                    {isCheckingUsername
-                      ? "Checking availability..."
-                      : userNameMessage}
-                  </p> */}
+                  
 
                   <FormMessage />
                 </FormItem>
@@ -121,11 +114,7 @@ const Page = () => {
                      
                     />
                   </FormControl>
-                  {/* <p className="text-sm text-gray-500">
-                    {isCheckingUsername
-                      ? "Checking availability..."
-                      : userNameMessage}
-                  </p> */}
+                 
 
                   <FormMessage />
                 </FormItem>

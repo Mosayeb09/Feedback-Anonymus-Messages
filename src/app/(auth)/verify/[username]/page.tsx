@@ -14,15 +14,17 @@ import { Button } from "@/components/ui/button";
 
 const VerifyAccount = () => {
   const router = useRouter();
-  const param = useParams<{ username: string }>();
+  const params = useParams<{ username: string }>();
   const { toast } = useToast();
   const form = useForm<z.infer<typeof verifySchema>>({
     resolver: zodResolver(verifySchema),
   });
   const onSubmit = async (data: z.infer<typeof verifySchema>) => {
     try {
-      const response = await axios.post(`/api/verify-code`, {
-        username: param.username,
+      console.log("Payload:", { username: params.username, code: data.code });
+
+      const response = await axios.post<ApiResponse>(`/api/verify-code`, {
+        username: params.username,
         code: data.code,
       });
       toast({
@@ -33,8 +35,8 @@ const VerifyAccount = () => {
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
-        title: "Sign up failed",
-        description: axiosError.response?.data.message,
+        title: "Verification failed",
+        description: axiosError.response?.data.message ?? "An error occurred , Please try again"  ,
         variant: "destructive",
       });
     }

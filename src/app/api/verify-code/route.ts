@@ -5,7 +5,7 @@ import UserModel from "@/model/user";
 export async function POST(request: Request) {
     await dbConnect();
     try {
-        const {username,verifyCode}= await request.json();
+        const {username,code}= await request.json();
 
         const user = await UserModel.findOne({username});
         if(!user){
@@ -17,10 +17,8 @@ export async function POST(request: Request) {
                 { status: 404 }
             )
         }
-        const isCodeValid = user.verifyCode === verifyCode;
-        const isCodeNotExpired = user.verifyCodeExpiry
-      ? new Date(user.verifyCodeExpiry) > new Date()
-      : false;
+        const isCodeValid = user.verifyCode === code;
+        const isCodeNotExpired = new Date(user.verifyCodeExpiry)> new Date();
 
         if(isCodeValid && isCodeNotExpired){
             user.isVerified = true;
